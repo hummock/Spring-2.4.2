@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CRUD-web" />
+        <module name="CRUD-web_1_0" />
+        <module name="CRUD-web_1_0 Spring Security" />
+        <module name="CRUD-web_1_0_Spring_Security-master" />
+        <module name="Spring-2.4.2" />
+        <module name="CRUD-web-Spring-Security1.0" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
