@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
@@ -20,6 +21,7 @@ public class UserControllerNew {
 
     @Autowired
     public UserControllerNew(UserService userService) {
+
         this.userService = userService;
     }
 
@@ -34,13 +36,10 @@ public class UserControllerNew {
     }
 
     @PostMapping("/new_user")
-    public String createNewUser(@RequestParam("name") String name,
-                                @RequestParam("lastname") String lastname,
-                                @RequestParam("age") int age,
-                                @RequestParam("login") String login,
-                                @RequestParam("password") String password,
-                                @RequestParam("role") String role) {
-        userService.createNewUser(name, lastname, age, login, password, role);
+    public String createNewUser(@ModelAttribute("user") User user) {
+        user.setPasswordReal(user.getPassword());
+
+        userService.createNewUser(user);
         return "redirect:/new_user";
     }
 

@@ -27,6 +27,7 @@ public class HibernateConfig {
 
     @Autowired
     public HibernateConfig(Environment environment) {
+
         this.environment = environment;
     }
 

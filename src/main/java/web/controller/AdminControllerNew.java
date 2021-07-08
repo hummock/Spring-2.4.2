@@ -19,6 +19,7 @@ public class AdminControllerNew {
 
     @Autowired
     public AdminControllerNew(UserService userService) {
+
         this.userService = userService;
     }
 
@@ -32,20 +33,26 @@ public class AdminControllerNew {
 
     @GetMapping("/{id}")
     public String getUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
+        model.addAttribute("user", userService.getUserById(id).get());
         return "edit_page";
     }
 
     @PostMapping("/{id}")
     public String editUser(@ModelAttribute("user") User user,
                            @PathVariable("id") Long id) {
-        userService.editUser(id, user);
+        userService.editUser(user);
         return "edit_page";
     }
 
     @GetMapping("/all_users/remove_user/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
+        userService.deleteUserById(id);
         return "redirect:/admin/all_users";
     }
 }
+
+
+// Обновление юзера сделать в одну строку через метод merge - +
+//Пароли шифровать в сервисе - +
+//@Autowired сделать везде через конструктор - +
+//в config сделать дир security перенести туда соответствующие классы - +

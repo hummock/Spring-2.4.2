@@ -21,6 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     public WebConfig(ApplicationContext applicationContext) {
+
         this.applicationContext = applicationContext;
     }
 

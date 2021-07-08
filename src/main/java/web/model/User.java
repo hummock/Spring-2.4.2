@@ -8,6 +8,8 @@ import java.util.Collection;
 import java.util.Set;
 
 @NoArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table(name = "users", schema = "spring_security")
@@ -33,7 +35,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column(name = "passwordConfirm")
-    private String passwordConfirm;
+    private String passwordReal;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "USER_ID"),
@@ -46,13 +48,21 @@ public class User implements UserDetails {
         this.age = age;
         this.login = login;
         this.password = password;
-        this.passwordConfirm = password;
+    }
+
+    public User(String name, String lastname, int age, String login, String password, Set<Role> roles) {
+        this.name = name;
+        this.lastname = lastname;
+        this.age = age;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
         return "User: id = " + id + ", name = " + name + " " + lastname + " " + age
-                + ", login = " + login + ", password = " + passwordConfirm;
+                + ", login = " + login + ", password = " + passwordReal;
     }
 
     @Override
@@ -90,63 +100,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }
